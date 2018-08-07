@@ -33,6 +33,8 @@ import org.nd4j.linalg.lossfunctions.LossFunctions;
 import org.nd4j.linalg.primitives.Pair;
 import org.nd4j.linalg.schedule.ScheduleType;
 import org.nd4j.linalg.schedule.StepSchedule;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.Arrays;
@@ -40,6 +42,7 @@ import java.util.List;
 import java.util.Random;
 
 public class AnimalClassifier {
+    private static Logger log = LoggerFactory.getLogger("examples.AnimalClassifier.class");
     public static void main(String[] args) throws Exception {
 
         //R,G,B channels
