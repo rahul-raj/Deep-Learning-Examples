@@ -92,19 +92,17 @@ public class AnimalClassifier {
                // .weightInit(WeightInit.XAVIER)
                // .updater(new Nesterovs(0.008D,0.9D))
                 .list()
-                .layer(new ConvolutionLayer.Builder(11,11)
+                .layer(new ConvolutionLayer.Builder(new int[]{11,11}, new int[]{4,4}, new int[] {3,3})
                         .nIn(channels)
                         .nOut(96)
-                        .stride(4,4)
                         .activation(Activation.RELU)
                         .build())
                 .layer(1, new LocalResponseNormalization.Builder().name("lrn1").build())
                 .layer(new SubsamplingLayer.Builder(PoolingType.MAX)
                         .kernelSize(3,3)
                         .build())
-                .layer(new ConvolutionLayer.Builder(5,5)
+                .layer(new ConvolutionLayer.Builder(new int[] {5,5}, new int[] {1,1}, new int[] {2,2})
                         .nOut(256)
-                        .stride(1,1)
                         .activation(Activation.RELU)
                         .build())
                 .layer(1, new LocalResponseNormalization.Builder().name("lrn2").build())
@@ -128,7 +126,6 @@ public class AnimalClassifier {
                 .setInputType(InputType.convolutional(30,30,3))
                 .backprop(true).pretrain(false)
                 .build();
-
 
         //train without transformations
         ImageRecordReader imageRecordReader = new ImageRecordReader(30,30,channels,parentPathLabelGenerator);
